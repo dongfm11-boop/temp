@@ -1,5 +1,5 @@
 import streamlit as st
-from google import genai
+from google import genai, errors
 from google.genai import types, errors
 import pandas as pd
 import io
