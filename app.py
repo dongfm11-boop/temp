@@ -1,6 +1,6 @@
 import streamlit as st
 from google import genai
-from google.genai import types
+from google.genai import types, errors
 import pandas as pd
 import io
 from datetime import datetime
@@ -191,7 +191,7 @@ if prompt := st.chat_input("오늘의 날씨와 일정을 말씀해 주세요 (�
             
             message_placeholder.markdown(full_response)
         
-        except types.errors.ResourceExhaustedError: # Handle 429
+        except errors.ResourceExhaustedError: # Handle 429
             # Get the last MAX_HISTORY_TURN pairs
             history_to_keep = st.session_state.messages[-(MAX_HISTORY_TURN * 2):]
             log_to_keep = st.session_state.history_log[-(MAX_HISTORY_TURN * 2):]
